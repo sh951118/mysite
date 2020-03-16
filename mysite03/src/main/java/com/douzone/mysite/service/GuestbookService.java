@@ -1,13 +1,11 @@
 package com.douzone.mysite.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douzone.mysite.repository.GuestbookRepository;
-import com.douzone.mysite.vo.BoardVo;
 import com.douzone.mysite.vo.GuestbookVo;
 
 @Service
