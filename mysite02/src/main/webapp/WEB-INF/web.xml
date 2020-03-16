@@ -11,7 +11,7 @@
 	</context-param>
 
 	<listener>
-		<listener-class>com.douozne.web.listener.ContextLoadListener</listener-class>
+		<listener-class>com.douzone.web.listener.ContextLoadListener</listener-class>
 	</listener>
 
 	<filter>
