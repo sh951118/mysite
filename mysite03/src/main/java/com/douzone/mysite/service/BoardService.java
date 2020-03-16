@@ -39,6 +39,9 @@ public class BoardService {
 	}
 
 	public boolean addContents(BoardVo boardVo) {
+		if( boardVo.getGno() != null ) {
+			updateOrderNo( boardVo );
+		}
 		int count = boardRepository.insert(boardVo);
 		return count == 1;
 	}
