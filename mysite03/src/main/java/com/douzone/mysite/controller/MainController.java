@@ -13,12 +13,13 @@ public class MainController {
 	
 	@Autowired
 	private SiteService siteService;
-
+	
 	@RequestMapping({"", "/main"})
 	public String index(Model model) {
 		
 		SiteVo siteVo = siteService.getList();
 		model.addAttribute("siteVo", siteVo);
+		
 		return "main/index";
 	}
 }
