@@ -10,6 +10,40 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/user.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#btn-checkemail").click(function() {
+		var email = $("#email").val();
+		if(email == ''){
+			return;
+		}
+		$.ajax({
+			url: '${pageContext.request.contextPath }/api/user/checkemail?email=' + email,
+			type: 'get',
+			// contentType: 'application/json'
+			data:'',
+			dataType: 'json',
+			success: function(response){
+				if(response.result == 'exist'){
+					alert('이미 존재하는 이메일 입니다.');
+					$('#email')
+						.val('')
+						.focus();
+					return;
+				}
+				alert('사용가능한 이메일 입니다.');
+				$('#btn-checkemail').hide();
+				$('#image-checkemail').show();
+ 				$('#email').attr("disabled",true);
+			},
+			error: function(XHR, status, e){
+				console.error(status + ":" + e);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -35,7 +69,8 @@
 					<!-- input에 path만 입력해주면 됨. -->
 					<label class="block-label" for="email"><spring:message code="User.Join.Email"/></label>
 					<form:input path="email"/>
-					<input type="button" value="id 중복체크">
+					<input type="button" id="btn-checkemail" value="이메일확인">
+					<img id="image-checkemail" style='width:16px; display:none' src='${pageContext.request.contextPath }/assets/images/ok.png' />
 					<p style="font-weight:bold; color:#f00; text-align:left; padding-left:0">
 						<form:errors path="email"/>
 					</p>
